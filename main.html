@@ -14,6 +14,9 @@
             <button type="submit">검색</button>
             <datalist id="weaponlists">
                 <option value="AK-47" style="display: block">AK-47</option>
+                <option value="M4A1" style="display: block">M4A1</option>
+                <option value="MP5" style="display: block">MP5</option>
+                <option value="USP45" style="display: block">USP45</option>
             </datalist>
             <!-- 무기 리스트 DB -->
             <script>
@@ -21,7 +24,7 @@
                 var input = document.querySelector("#id");
     
                 // 무기 목록은 모두 밑의 id값 항목으로 모두 옮겨주세요.
-                var id = ["AK-47"];
+                var id = ["AK-47", "M4A1", "MP5", "USP45"];
 
                 const wlist = document.querySelector("#weaponlists");
                 function searchBox(sw) {
@@ -35,8 +38,8 @@
                         break;
 
                         default:
-                            console.log("ERROR");
-                            break;
+                        console.log("ERROR");
+                        break;
                     }
                 }
             </script>
