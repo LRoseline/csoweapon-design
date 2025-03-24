@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="/main.css" rel="stylesheet">
+    <link href="/weaponinfo.css" rel="stylesheet">
 </head>
 <body>
     <div class="top-bar">
-        <a href="/">C/W</a>
+        <a class="narrow-title" href="/">C/W</a>
+        <a class="title" href="/">CSOWEAPON</a>
         <form method="post" class="search-box">
             <input onfocus="searchBox('on')" role="combobox" name="id" id="id" placeholder="무기 이름을 입력하세요" autocomplete="off">
             <button type="submit">검색</button>
@@ -45,6 +47,48 @@
             </script>
         </form>
     </div>
-    <script src="https://csoweapon.com/search.js"></script>
+    <!-- 무기 정보창 -->
+    <main>
+        <div class="basic-info">
+            <div class="weapon-name">
+                M4A1
+            </div>
+            <div class="weapon-info">
+                <div class="image">
+                    <img src="/m4a1.png">
+                </div>
+                <div class="stat">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>대미지</th>
+                                <th>좀비 대미지</th>
+                                <th>시나리오 대미지</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>22</td>
+                                <td>23</td>
+                            </tr>
+                            <tr>
+                                <td>37</td>
+                                <td>38</td>
+                            </tr>
+                            <tr>
+                                <td>50</td>
+                                <td>50</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        Main Created by Owled<br>
+        CSS Designed by 시확찢
+    </footer>
+    <script src="/search.js"></script>
 </body>
 </html>

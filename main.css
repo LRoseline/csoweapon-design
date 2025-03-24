@@ -6,7 +6,11 @@ a, a:visited {
     text-decoration: none;
 }
 
-.top-bar a, a:visited, a:hover {
+.top-bar a, .top-bar a:visited {
+    color: #DDD;
+    transition: 0.25s;
+}
+.top-bar a:hover {
     color: #FFF;
 }
 
@@ -26,19 +30,75 @@ a, a:visited {
 }
 
 #id {
-    font-size: 0.4em;
-    padding: 0.1em 0.5em;
-    width: 3.5cm;
+    font-size: 0.6em;
+    padding: 0.1cm 0.25cm;
+    width: 4cm;
+    border: 0;
+    border-radius: 0.25cm 0 0 0.25cm;
+    outline: none;
+}
+
+#id:focus {
+    background-color: #0002;
+    border: 0;
+}
+
+.search-box > button[type=submit] {
+    border-radius: 0 0.25cm 0.25cm 0;
+    border: 0;
+    padding: 0 0.25cm;
 }
 
 datalist {
     position: absolute;
-    top: 1.35em;
+    top: 1.5em;
     color: #000;
-    border: 1px solid black;
+    background-color: #FFF;
+    width: 4.5cm;
 }
 
 datalist > option {
     padding: 0.2em;
     font-size: 0.75em;
+}
+
+datalist > option:hover {
+    background-color: #0002;
+}
+
+.title {
+    display: block;
+}
+
+.narrow-title {
+    display: none;
+}
+
+footer {
+    padding: 0.5cm;
+    border-top: 2px solid #000;
+    text-align: center;
+    width: 60%;
+    margin: 0.5cm auto auto auto;
+}
+
+@media screen and (max-width: 400px) {
+    .title {
+        display: none;
+    }
+
+    .narrow-title {
+        display: block;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #222;
+        color: #DDD;
+    }
+
+    footer {
+        border-top-color: #DDD;
+    }
 }
