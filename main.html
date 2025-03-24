@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="/main.css" rel="stylesheet">
+</head>
+<body>
+    <div class="top-bar">
+        <a href="/">C/W</a>
+        <form method="post" class="search-box">
+            <input onfocus="searchBox('on')" role="combobox" name="id" id="id" placeholder="무기 이름을 입력하세요" autocomplete="off">
+            <button type="submit">검색</button>
+            <datalist id="weaponlists">
+                <option value="AK-47" style="display: block">AK-47</option>
+            </datalist>
+            <!-- 무기 리스트 DB -->
+            <script>
+                var str = '';
+                var input = document.querySelector("#id");
+    
+                // 무기 목록은 모두 밑의 id값 항목으로 모두 옮겨주세요.
+                var id = ["AK-47"];
+
+                const wlist = document.querySelector("#weaponlists");
+                function searchBox(sw) {
+                    switch (sw) {
+                        case "on":
+                        wlist.style.display = "block";
+                        break;
+
+                        case "off":
+                        wlist.style.display = "none";
+                        break;
+
+                        default:
+                            console.log("ERROR");
+                            break;
+                    }
+                }
+            </script>
+        </form>
+    </div>
+    <script src="https://csoweapon.com/search.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+body {
+    margin: 0;
+}
+
+a, a:visited {
+    text-decoration: none;
+}
+
+.top-bar a, a:visited, a:hover {
+    color: #FFF;
+}
+
+.top-bar {  
+    padding: 0.1em 0.4em;
+    font-weight: 700;
+    font-size: 1.5em;
+    background-color: lightslategray;
+    color: #FFF;
+    display: flex;
+    justify-content: space-between;
+}
+
+.search-box {
+    vertical-align: middle;
+    display: flex;
+}
+
+#id {
+    font-size: 0.4em;
+    padding: 0.1em 0.5em;
+    width: 3.5cm;
+}
+
+datalist {
+    position: absolute;
+    top: 1.35em;
+    color: #000;
+    border: 1px solid black;
+}
+
+datalist > option {
+    padding: 0.2em;
+    font-size: 0.75em;
+}
