@@ -83,8 +83,17 @@ table {
 }
 
 .enchant-count {
-    width: 100px;
+    width: 50px;
     text-align: right;
+}
+
+.memo {
+    text-align: start;
+    padding-bottom: 0.75cm;
+}
+
+.memo img {
+    width: 100%;
 }
 
 .memo table {

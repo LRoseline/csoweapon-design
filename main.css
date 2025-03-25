@@ -70,6 +70,8 @@ a, a:visited {
     border-radius: 0 0.2cm 0.2cm 0;
     border: 0;
     padding: 0 0.2cm;
+    background-color: lightsteelblue;
+    font-weight: 700;
 }
 
 datalist > option:hover {
