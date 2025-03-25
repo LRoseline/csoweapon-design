@@ -1,5 +1,14 @@
-main {
-    margin: 0.5cm;
+.basic-info {
+    margin: auto;
+}
+
+.window {
+    text-align: center;
+    background-color: #DDD;
+    margin: 0.2cm;
+    padding: 0.25cm;
+    border-radius: 10px;
+    max-height: 660px;
 }
 
 .weapon-name {
@@ -8,24 +17,147 @@ main {
     text-align: center;
 }
 
-.stat > table{
-    display:flex;
-    overflow-x: auto;
-    overflow-y: hidden;
+.weapon-ban {
+    table-layout: fixed;
 }
 
-.stat tbody {
-    display: flex;
+table{
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16pt;
 }
 
-.stat th {
+.stat table {
+    font-size: 12pt;
+}
+
+.stat tbody th, .info {
+    text-align: right;
+}
+
+.info {
+    width: 120px;
     display: block;
 }
 
-.stat
+.top-sepe {
+    border-bottom: 2px solid #222;
+}
 
-@media screen and (min-width: 1024px) {
-    main {
-        margin: auto;
+.stat th, .stat td {
+    padding: 0.5em;
+}
+
+.detail {
+    overflow-x: auto;
+}
+
+.secmenu {
+    border-radius: 6px;
+    position: sticky;
+    display: block;
+    top: 0;
+    background-color: #BBB;
+}
+
+.detail::-webkit-scrollbar {
+    border-radius: 0 0 10px 10px;
+    width: 10px;
+    height: 10px;
+    background-color: #DDD;
+}
+
+.detail::-webkit-scrollbar-thumb {
+    background-color: #AAA;
+}
+
+.enchant {
+    display: block;
+}
+
+.enchant > table {
+    margin-bottom: 20px;
+}
+
+.enchant > table > tbody > tr > th {
+    width: 120px;
+    text-align: right;
+}
+
+@media screen and (max-width: 600px) {
+    .fully-text {
+        font-size: 14pt;
+    }
+}
+
+@media screen and (max-width: 470px) {
+    .weapon-name {
+        font-size: 24pt;
+    }
+
+    .fully-text {
+        font-size: 10pt;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .basic-info {
+        width: 860px;
+    }
+
+    .window {
+        margin: 0.1cm;
+    }
+
+    .window-seperate {
+        width: 100%;
+    }
+
+    .weapon-info {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .weapon-ban {
+        font-size: 13pt;
+    }
+    
+    .weapon-ban th {
+        padding: 0.1cm 0.2cm;
+    }
+
+    .weapon-ban td {
+        font-size: 16pt;
+    }
+
+    .fully-text-extend {
+        font-size: 10pt;
+    }
+
+    secmenu {
+        position: sticky;
+        top: 0;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    .window {
+        background-color: #444;
+    }
+
+    .top-sepe {
+        border-bottom: 2px solid white;
+    }
+
+    .detail::-webkit-scrollbar {
+        background-color: #AAA;
+    }
+
+    .detail::-webkit-scrollbar-thumb {
+        background-color: #DDD;
+    }
+
+    .secmenu {
+        background-color: #333;
     }
 }

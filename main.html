@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>CSOWeapon / 카스온라인 무기정보</title>
     <link href="/main.css" rel="stylesheet">
     <link href="/weaponinfo.css" rel="stylesheet">
 </head>
@@ -12,83 +12,435 @@
         <a class="narrow-title" href="/">C/W</a>
         <a class="title" href="/">CSOWEAPON</a>
         <form method="post" class="search-box">
-            <input onfocus="searchBox('on')" role="combobox" name="id" id="id" placeholder="무기 이름을 입력하세요" autocomplete="off">
+            <input list="weaponlists" required name="id" id="id" placeholder="무기 이름을 입력하세요" autocomplete="off">
             <button type="submit">검색</button>
             <datalist id="weaponlists">
-                <option value="AK-47" style="display: block">AK-47</option>
-                <option value="M4A1" style="display: block">M4A1</option>
-                <option value="MP5" style="display: block">MP5</option>
-                <option value="USP45" style="display: block">USP45</option>
+                <option value="AK-47" label="소총">AK-47</option>
+                <option value="M4A1" label="소총">M4A1</option>
+                <option value="MP5" label="기관단총">MP5</option>
+                <option value="USP45" label="권총">USP45</option>
             </datalist>
-            <!-- 무기 리스트 DB -->
+            <!-- 무기 리스트 값들은 모두 weapon.js로 옮겼습니다. -->
+            <script src="/weapons.js"></script>
             <script>
                 var str = '';
                 var input = document.querySelector("#id");
     
                 // 무기 목록은 모두 밑의 id값 항목으로 모두 옮겨주세요.
-                var id = ["AK-47", "M4A1", "MP5", "USP45"];
 
-                const wlist = document.querySelector("#weaponlists");
-                function searchBox(sw) {
-                    switch (sw) {
-                        case "on":
-                        wlist.style.display = "block";
-                        break;
-
-                        case "off":
-                        wlist.style.display = "none";
-                        break;
-
-                        default:
-                        console.log("ERROR");
-                        break;
-                    }
+                for (var i=0; i < id.length;++i){
+                    str += '<option value="'+id[i]+'" >'+id[i]+'</option>';
                 }
+                var my_list=document.getElementById("weaponlists");
+                my_list.innerHTML = str;
             </script>
         </form>
     </div>
     <!-- 무기 정보창 -->
     <main>
         <div class="basic-info">
-            <div class="weapon-name">
-                M4A1
+            <div class="weapon-name window">
+                DESTROYER Refine
             </div>
             <div class="weapon-info">
-                <div class="image">
-                    <img src="/m4a1.png">
+                <div class="image window window-seperate">
+                    <img src="/DESTROYER Refine.png">
                 </div>
-                <div class="stat">
+                <div class="buyable window window-seperate">
+                    <secmenu>진영별 구매 가능 여부</secmenu>
                     <table>
                         <thead>
                             <tr>
-                                <th>대미지</th>
-                                <th>좀비 대미지</th>
-                                <th>시나리오 대미지</th>
+                                <th style="color: cadetblue;">CT</th>
+                                <th style="color: crimson">TR</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>22</td>
-                                <td>23</td>
+                                <td>O</td>
+                                <td>O</td>
                             </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="buyable window window-seperate">
+                    <secmenu>무기 제한</secmenu>
+                    <table class="weapon-ban">
+                        <thead>
                             <tr>
-                                <td>37</td>
-                                <td>38</td>
+                                <th>클래식</th>
+                                <th style="color: dodgerblue;">뉴클래식</th>
+                                <th style="color: tomato;">뉴클래식</th>
                             </tr>
+                        </thead>
+                        <tbody>
                             <tr>
-                                <td>50</td>
-                                <td>50</td>
+                                <td>X</td>
+                                <td>O</td>
+                                <td>O</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
+            <div class="weapon-info window">
+                <table>
+                    <thead>
+                        <tr style="font-size: 24pt; font-weight: 700;">
+                            <td>S</td>
+                            <td>B</td>
+                            <td>A</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>일반모드</th>
+                            <th>좀비모드</th>
+                            <th>시나리오</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="weapon-info">
+                <div class="stat window window-seperate">
+                    <table>
+                        <thead>
+                            <tr class="top-sepe">
+                                <th class="info">정보</th>
+                                <th class="mode">A모드</th>
+                                <th class="mode">B모드</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>대미지</th>
+                                <td>22</td>
+                                <td>23</td>
+                            </tr>
+                            <tr>
+                                <th>좀비 대미지</th>
+                                <td>37</td>
+                                <td>38</td>
+                            </tr>
+                            <tr>
+                                <th>시나리오 대미지</th>
+                                <td colspan="2">50</td>
+                            </tr>
+                            <tr>
+                                <th>명중률</th>
+                                <td colspan="2">90%</td>
+                            </tr>
+                            <tr>
+                                <th>반동</th>
+                                <td colspan="2">82%</td>
+                            </tr>
+                            <tr>
+                                <th>무게</th>
+                                <td colspan="2">62%</td>
+                            </tr>
+                            <tr>
+                                <th>좀비 넉백</th>
+                                <td colspan="2">13%</td>
+                            </tr>
+                            <tr>
+                                <th>좀비 경직</th>
+                                <td colspan="2">50%</td>
+                            </tr>
+                            <tr>
+                                <th>가격</th>
+                                <td colspan="2">$3,100</td>
+                            </tr>
+                            <tr>
+                                <th>장탄수</th>
+                                <td colspan="2">30/90</td>
+                            </tr>
+                            <tr>
+                                <th>좀비전 장탄수</th>
+                                <td colspan="2">30/270</td>
+                            </tr>
+                            <tr>
+                                <th>장전속도</th>
+                                <td colspan="2">3.1s</td>
+                            </tr>
+                            <tr>
+                                <th>탄약</th>
+                                <td colspan="2">20mm 특수 고폭탄</td>
+                            </tr>
+                            <tr>
+                                <th>특수기능</th>
+                                <td colspan="2">스코프</td>
+                            </tr>
+                            <tr>
+                                <th>최대 관통 수</th>
+                                <td colspan="2">10명</td>
+                            </tr>
+                            <tr>
+                                <th>관통 대미지<br>감소율(%)</th>
+                                <td colspan="2">100 - 75 - 56 - 42 - 31 - 23 - 17 - 13 - 9 - 7</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="detail window window-seperate">
+                    <div class="secmenu">
+                        <secmenu>대미지</secmenu>
+                        <div style="position: absolute; text-align: right; top: 4px; right: 10px;">
+                            <input type="checkbox" id="isZombie">
+                            <label for="isZombie">좀비모드</label>
+                        </div>
+                        <script>
+                            var zbcheck = document.querySelector("#isZombie");
+                            
+                            zbcheck.addEventListener("change", function (e) {
+                                var human = document.querySelector("#human-dmg");
+                                var zombie = document.querySelector("#zombie-dmg");
+
+                                console.log("Mode Change");
+                                if (human.style.display != "none") {
+                                    human.style.display = "none";
+                                    zombie.style.display = "block";
+                                } else {
+                                    human.style.display = "block";
+                                    zombie.style.display = "none";
+                                }
+                            });
+                        </script>
+                    </div>
+                    <div class="enchant" style="display: block;" id="human-dmg">
+                        <table>
+                            <thead>
+                                <th colspan="3">A모드 0강</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>방어구</th>
+                                    <th style="text-align: center;">O</td>
+                                    <th style="text-align: center;">X</td>
+                                </tr>
+                                <tr>
+                                    <th>머리</th>
+                                    <td>417</td>
+                                    <td>420</td>
+                                </tr>
+                                <tr>
+                                    <th>가슴, 팔</th>
+                                    <td>104</td>
+                                    <td>105</td>
+                                </tr>
+                                <tr>
+                                    <th>배</th>
+                                    <td>130</td>
+                                    <td>131</td>
+                                </tr>
+                                <tr>
+                                    <th>다리</th>
+                                    <td>78</td>
+                                    <td>78</td>
+                                </tr>
+                                <tr>
+                                    <th>폭발 대미지</th>
+                                    <td>29</td>
+                                    <td>30</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table>
+                            <thead>
+                                <th colspan="3">B모드 0강</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>방어구</th>
+                                    <th style="text-align: center;">O</td>
+                                    <th style="text-align: center;">X</td>
+                                </tr>
+                                <tr>
+                                    <th>머리</th>
+                                    <td>417</td>
+                                    <td>420</td>
+                                </tr>
+                                <tr>
+                                    <th>가슴, 팔</th>
+                                    <td>104</td>
+                                    <td>105</td>
+                                </tr>
+                                <tr>
+                                    <th>배</th>
+                                    <td>130</td>
+                                    <td>131</td>
+                                </tr>
+                                <tr>
+                                    <th>다리</th>
+                                    <td>78</td>
+                                    <td>78</td>
+                                </tr>
+                                <tr>
+                                    <th>폭발 대미지</th>
+                                    <td>29</td>
+                                    <td>30</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="enchant" style="display: none;" id="zombie-dmg">
+                        <table>
+                            <thead>
+                                <th colspan="3">A모드 0강</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>방어구</th>
+                                    <th style="text-align: center;">O</td>
+                                    <th style="text-align: center;">X</td>
+                                </tr>
+                                <tr>
+                                    <th>머리</th>
+                                    <td>843</td>
+                                    <td>1054</td>
+                                </tr>
+                                <tr>
+                                    <th>가슴, 팔</th>
+                                    <td>263</td>
+                                    <td>265</td>
+                                </tr>
+                                <tr>
+                                    <th>배</th>
+                                    <td>329</td>
+                                    <td>331</td>
+                                </tr>
+                                <tr>
+                                    <th>다리</th>
+                                    <td>198</td>
+                                    <td>198</td>
+                                </tr>
+                                <tr>
+                                    <th>폭발 대미지</th>
+                                    <td>144</td>
+                                    <td>145</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table>
+                            <thead>
+                                <th colspan="3">A모드 1강</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>방어구</th>
+                                    <th style="text-align: center;">O</td>
+                                    <th style="text-align: center;">X</td>
+                                </tr>
+                                <tr>
+                                    <th>머리</th>
+                                    <td>843</td>
+                                    <td>1054</td>
+                                </tr>
+                                <tr>
+                                    <th>가슴, 팔</th>
+                                    <td>263</td>
+                                    <td>265</td>
+                                </tr>
+                                <tr>
+                                    <th>배</th>
+                                    <td>329</td>
+                                    <td>331</td>
+                                </tr>
+                                <tr>
+                                    <th>다리</th>
+                                    <td>198</td>
+                                    <td>198</td>
+                                </tr>
+                                <tr>
+                                    <th>폭발 대미지</th>
+                                    <td>144</td>
+                                    <td>145</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table>
+                            <thead>
+                                <th colspan="3">B모드 0강</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>방어구</th>
+                                    <th style="text-align: center;">O</td>
+                                    <th style="text-align: center;">X</td>
+                                </tr>
+                                <tr>
+                                    <th>머리</th>
+                                    <td>843</td>
+                                    <td>1054</td>
+                                </tr>
+                                <tr>
+                                    <th>가슴, 팔</th>
+                                    <td>263</td>
+                                    <td>265</td>
+                                </tr>
+                                <tr>
+                                    <th>배</th>
+                                    <td>329</td>
+                                    <td>331</td>
+                                </tr>
+                                <tr>
+                                    <th>다리</th>
+                                    <td>198</td>
+                                    <td>198</td>
+                                </tr>
+                                <tr>
+                                    <th>폭발 대미지</th>
+                                    <td>144</td>
+                                    <td>145</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table>
+                            <thead>
+                                <th colspan="3">B모드 1강</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>방어구</th>
+                                    <th style="text-align: center;">O</td>
+                                    <th style="text-align: center;">X</td>
+                                </tr>
+                                <tr>
+                                    <th>머리</th>
+                                    <td>843</td>
+                                    <td>1054</td>
+                                </tr>
+                                <tr>
+                                    <th>가슴, 팔</th>
+                                    <td>263</td>
+                                    <td>265</td>
+                                </tr>
+                                <tr>
+                                    <th>배</th>
+                                    <td>329</td>
+                                    <td>331</td>
+                                </tr>
+                                <tr>
+                                    <th>다리</th>
+                                    <td>198</td>
+                                    <td>198</td>
+                                </tr>
+                                <tr>
+                                    <th>폭발 대미지</th>
+                                    <td>144</td>
+                                    <td>145</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="memo window">
+            </div>
         </div>
     </main>
     <footer>
-        Main Created by Owled<br>
-        CSS Designed by 시확찢
+        Main Created by ???<br>
+        CSS Designed by ???
     </footer>
-    <script src="/search.js"></script>
 </body>
 </html>

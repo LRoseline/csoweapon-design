@@ -1,5 +1,18 @@
+@font-face {
+    font-family: 'NEXON Lv1 Gothic OTF';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv1 Gothic OTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     margin: 0;
+}
+
+secmenu {
+    font-size: 16pt;
+    font-weight: 700;
+    text-align: center;
 }
 
 a, a:visited {
@@ -8,58 +21,55 @@ a, a:visited {
 
 .top-bar a, .top-bar a:visited {
     color: #DDD;
+    font-family: NEXON Lv1 Gothic OTF;
     transition: 0.25s;
+    margin-left: 0.25cm;
+    font-size: 24pt;
 }
 .top-bar a:hover {
     color: #FFF;
 }
 
 .top-bar {  
-    padding: 0.1em 0.4em;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
     font-weight: 700;
     font-size: 1.5em;
     background-color: lightslategray;
     color: #FFF;
     display: flex;
-    justify-content: space-between;
+    z-index: 50;
 }
 
 .search-box {
     vertical-align: middle;
     display: flex;
+    margin-right: 0.25cm;
 }
 
 #id {
-    font-size: 0.6em;
-    padding: 0.1cm 0.25cm;
-    width: 4cm;
+    font-size: 10pt;
+    padding: 0.15cm 0.25cm;
+    width: 4.5cm;
     border: 0;
-    border-radius: 0.25cm 0 0 0.25cm;
+    border-radius: 0.2cm 0 0 0.2cm;
     outline: none;
+    background-color: #DDD;
 }
 
 #id:focus {
-    background-color: #0002;
+    background-color: #FFF;
     border: 0;
 }
 
 .search-box > button[type=submit] {
-    border-radius: 0 0.25cm 0.25cm 0;
+    border-radius: 0 0.2cm 0.2cm 0;
     border: 0;
-    padding: 0 0.25cm;
-}
-
-datalist {
-    position: absolute;
-    top: 1.5em;
-    color: #000;
-    background-color: #FFF;
-    width: 4.5cm;
-}
-
-datalist > option {
-    padding: 0.2em;
-    font-size: 0.75em;
+    padding: 0 0.2cm;
 }
 
 datalist > option:hover {
@@ -74,21 +84,34 @@ datalist > option:hover {
     display: none;
 }
 
-footer {
-    padding: 0.5cm;
-    border-top: 2px solid #000;
-    text-align: center;
-    width: 60%;
-    margin: 0.5cm auto auto auto;
+main {
+    margin-top: 1.5cm;
 }
 
-@media screen and (max-width: 400px) {
+footer {
+    padding: 0.5em 100px;
+    border-top: 2px solid #000;
+    text-align: center;
+    margin: 0.25cm 20px;
+}
+
+@media screen and (max-width: 560px) {
     .title {
         display: none;
     }
 
     .narrow-title {
         display: block;
+    }
+}
+
+@media screen and (max-width: 340px) {
+    .title {
+        display: none;
+    }
+
+    .narrow-title {
+        display: none;
     }
 }
 
