@@ -182,6 +182,7 @@
                     </table>
                 </div>
                 <div class="detail window window-seperate">
+                    <!-- 대인↔좀비모드 변환기능 -->
                     <div class="secmenu">
                         <secmenu>대미지</secmenu>
                         <div style="position: absolute; text-align: right; top: 4px; right: 10px;">
@@ -206,6 +207,7 @@
                             });
                         </script>
                     </div>
+                    <!-- 대미지 실제 수치(강화포함) - 인간 -->
                     <div class="enchant" style="display: block;" id="human-dmg">
                         <table>
                             <thead>
@@ -282,6 +284,7 @@
                             </tbody>
                         </table>
                     </div>
+                    <!-- 대미지 실제 수치(강화포함) - 좀비 -->
                     <div class="enchant" style="display: none;" id="zombie-dmg">
                         <table>
                             <thead>
@@ -434,7 +437,40 @@
                     </div>
                 </div>
             </div>
+            <!-- 기타 강화 및 패치사항 작성하는 곳 -->
             <div class="memo window">
+                <secmenu>무게</secmenu>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>강화수치</th>
+                            <th>달리기</th>
+                            <th>B모드 달리기</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>0강</th>
+                            <td>200</td>
+                            <td>150</td>
+                        </tr>
+                        <tr>
+                            <th>1강</th>
+                            <td>205</td>
+                            <td>155</td>
+                        </tr>
+                        <tr>
+                            <th>2강</th>
+                            <td>210</td>
+                            <td>160</td>
+                        </tr>
+                        <tr>
+                            <th>3강</th>
+                            <td>215</td>
+                            <td>165</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </main>
