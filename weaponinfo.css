@@ -21,10 +21,13 @@
     table-layout: fixed;
 }
 
-table{
-    width: 100%;
+table {
     border-collapse: collapse;
     font-size: 16pt;
+}
+
+.stat table, .detail table, .enchant table, .buyable table, .weapon-info table {
+    width: 100%;
 }
 
 .stat table {
@@ -77,6 +80,19 @@ table{
 
 .enchant > table {
     margin-bottom: 20px;
+}
+
+.enchant-count {
+    width: 100px;
+    text-align: right;
+}
+
+.memo table {
+    margin-bottom: 20px;
+}
+
+.memo th {
+    padding: 0.1em 0.5em;
 }
 
 .enchant > table > tbody > tr > th {
