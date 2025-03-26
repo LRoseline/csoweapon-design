@@ -24,7 +24,8 @@ a, a:visited {
     font-family: NEXON Lv1 Gothic OTF;
     transition: 0.25s;
     margin-left: 0.25cm;
-    font-size: 24pt;
+    font-size: 28pt;
+    padding: 2pt;
 }
 .top-bar a:hover {
     color: #FFF;
@@ -48,16 +49,17 @@ a, a:visited {
 .search-box {
     vertical-align: middle;
     display: flex;
-    margin-right: 0.25cm;
+    margin-right: 0.1cm;
 }
 
 #id {
-    font-size: 10pt;
-    padding: 0.15cm 0.25cm;
-    width: 4.5cm;
-    border: 0;
+    font-size: 16pt;
+    padding: 4pt 0.25cm;
+    width: 180px;
     border-radius: 0.2cm 0 0 0.2cm;
+    border: 0;
     outline: none;
+    font-weight: 600;
     background-color: #DDD;
 }
 
@@ -67,11 +69,19 @@ a, a:visited {
 }
 
 .search-box > button[type=submit] {
+    font-size: 16pt;
+    padding: 4pt 0.25cm;
     border-radius: 0 0.2cm 0.2cm 0;
     border: 0;
-    padding: 0 0.2cm;
     background-color: lightsteelblue;
-    font-weight: 700;
+    font-weight: 600;
+    color: #444;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.search-box > button[type=submit]:hover {
+    background-color: #FFF8;
 }
 
 datalist > option:hover {
@@ -97,6 +107,12 @@ footer {
     margin: 0.25cm 20px;
 }
 
+@media screen and (min-width: 720px) {
+    #id {
+        width: 240px;
+    }
+}
+
 @media screen and (max-width: 560px) {
     .title {
         display: none;
@@ -104,6 +120,10 @@ footer {
 
     .narrow-title {
         display: block;
+    }
+
+    #id {
+        width: 140px;
     }
 }
 

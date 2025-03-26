@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <!-- 실적용할 경우 /csoweapon-design 을 지워 주시기 바랍니다. -->
+    <!-- 실적용할 경우  을 지워 주시기 바랍니다. -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSOWeapon / 카스온라인 무기정보</title>
@@ -13,7 +13,7 @@
         <a class="narrow-title" href="/">C/W</a>
         <a class="title" href="/">CSOWEAPON</a>
         <form method="post" class="search-box">
-            <input list="weaponlists" required name="id" id="id" placeholder="무기 이름을 입력하세요" autocomplete="off">
+            <input list="weaponlists" required name="id" id="id" placeholder="검색할 무기" autocomplete="off">
             <button type="submit">검색</button>
             <datalist id="weaponlists">
                 <option value="AK-47" label="소총">AK-47</option>
@@ -45,7 +45,7 @@
             </div>
             <div class="weapon-info">
                 <div class="image window window-seperate">
-                    <img src="/csoweapon-design/DESTROYER Refine.png">
+                    <img src="/DESTROYER Refine.png">
                 </div>
                 <div class="buyable window window-seperate">
                     <secmenu>진영별 구매 가능 여부</secmenu>
@@ -184,27 +184,49 @@
                     </table>
                 </div>
                 <div class="detail window window-seperate">
-                    <!-- 대인↔좀비모드 변환기능 -->
+                    <!-- 대인↔좀비모드 변환기능 (숙주포함) -->
                     <div class="secmenu">
                         <secmenu>대미지</secmenu>
-                        <div style="position: absolute; text-align: right; top: 4px; right: 10px;">
+                        <div style="text-align: right; padding-right: 4px; padding-bottom: 4px;">
                             <input type="checkbox" id="isZombie">
-                            <label for="isZombie">좀비모드</label>
+                            <label for="isZombie">좀비</label>
+                            <input type="checkbox" id="isHostZb" disabled>
+                            <label for="isHostZb">숙주</label>
                         </div>
                         <script>
                             var zbcheck = document.querySelector("#isZombie");
+                            var hostzb = document.querySelector("#isHostZb")
                             
                             zbcheck.addEventListener("change", function (e) {
                                 var human = document.querySelector("#human-dmg");
                                 var zombie = document.querySelector("#zombie-dmg");
+                                var hostzb = document.querySelector("#isHostZb")
+                                var hostval = document.querySelector("#zombie-dmg-host");
 
                                 console.log("Mode Change");
                                 if (human.style.display != "none") {
                                     human.style.display = "none";
                                     zombie.style.display = "block";
+                                    hostzb.disabled = false;
                                 } else {
                                     human.style.display = "block";
                                     zombie.style.display = "none";
+                                    hostzb.checked = false;
+                                    hostzb.disabled = true;
+                                    hostval.style.display = "none";
+                                }
+                            });
+
+                            hostzb.addEventListener("change", function(e) {
+                                var zombie = document.querySelector("#zombie-dmg");
+                                var hostval = document.querySelector("#zombie-dmg-host");
+
+                                if (zombie.style.display != "none") {
+                                    zombie.style.display = "none";
+                                    hostval.style.display = "block";
+                                } else {
+                                    zombie.style.display = "block";
+                                    hostval.style.display = "none";
                                 }
                             });
                         </script>
@@ -300,17 +322,17 @@
                                 </tr>
                                 <tr>
                                     <th>머리</th>
-                                    <td>843</td>
-                                    <td>1054</td>
+                                    <td>848</td>
+                                    <td>1060</td>
                                 </tr>
                                 <tr>
                                     <th>가슴, 팔</th>
-                                    <td>263</td>
+                                    <td>265</td>
                                     <td>265</td>
                                 </tr>
                                 <tr>
                                     <th>배</th>
-                                    <td>329</td>
+                                    <td>331</td>
                                     <td>331</td>
                                 </tr>
                                 <tr>
@@ -320,7 +342,7 @@
                                 </tr>
                                 <tr>
                                     <th>폭발 대미지</th>
-                                    <td>144</td>
+                                    <td>145</td>
                                     <td>145</td>
                                 </tr>
                             </tbody>
@@ -337,17 +359,17 @@
                                 </tr>
                                 <tr>
                                     <th>머리</th>
-                                    <td>843</td>
-                                    <td>1054</td>
+                                    <td>848</td>
+                                    <td>1060</td>
                                 </tr>
                                 <tr>
                                     <th>가슴, 팔</th>
-                                    <td>263</td>
+                                    <td>265</td>
                                     <td>265</td>
                                 </tr>
                                 <tr>
                                     <th>배</th>
-                                    <td>329</td>
+                                    <td>331</td>
                                     <td>331</td>
                                 </tr>
                                 <tr>
@@ -357,10 +379,159 @@
                                 </tr>
                                 <tr>
                                     <th>폭발 대미지</th>
-                                    <td>144</td>
+                                    <td>145</td>
                                     <td>145</td>
                                 </tr>
                             </tbody>
+                        </table>
+                        <table>
+                            <thead>
+                                <th colspan="3">B모드 0강</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>방어구</th>
+                                    <th style="text-align: center;">O</td>
+                                    <th style="text-align: center;">X</td>
+                                </tr>
+                                <tr>
+                                    <th>머리</th>
+                                    <td>848</td>
+                                    <td>1060</td>
+                                </tr>
+                                <tr>
+                                    <th>가슴, 팔</th>
+                                    <td>265</td>
+                                    <td>265</td>
+                                </tr>
+                                <tr>
+                                    <th>배</th>
+                                    <td>331</td>
+                                    <td>331</td>
+                                </tr>
+                                <tr>
+                                    <th>다리</th>
+                                    <td>198</td>
+                                    <td>198</td>
+                                </tr>
+                                <tr>
+                                    <th>폭발 대미지</th>
+                                    <td>145</td>
+                                    <td>145</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table>
+                            <thead>
+                                <th colspan="3">B모드 1강</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>방어구</th>
+                                    <th style="text-align: center;">O</td>
+                                    <th style="text-align: center;">X</td>
+                                </tr>
+                                <tr>
+                                    <th>머리</th>
+                                    <td>848</td>
+                                    <td>1060</td>
+                                </tr>
+                                <tr>
+                                    <th>가슴, 팔</th>
+                                    <td>265</td>
+                                    <td>265</td>
+                                </tr>
+                                <tr>
+                                    <th>배</th>
+                                    <td>331</td>
+                                    <td>331</td>
+                                </tr>
+                                <tr>
+                                    <th>다리</th>
+                                    <td>198</td>
+                                    <td>198</td>
+                                </tr>
+                                <tr>
+                                    <th>폭발 대미지</th>
+                                    <td>145</td>
+                                    <td>145</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- 대미지 실제 수치(강화포함) - 숙주좀비 -->
+                    <div class="enchant" style="display: none;" id="zombie-dmg-host">
+                        <table>
+                            <thead>
+                                <th colspan="3">A모드 0강</th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>방어구</th>
+                                    <th style="text-align: center;">O</td>
+                                    <th style="text-align: center;">X</td>
+                                </tr>
+                                <tr>
+                                    <th>머리</th>
+                                    <td>843</td>
+                                    <td>1054</td>
+                                </tr>
+                                <tr>
+                                    <th>가슴, 팔</th>
+                                    <td>263</td>
+                                    <td>263</td>
+                                </tr>
+                                <tr>
+                                    <th>배</th>
+                                    <td>329</td>
+                                    <td>329</td>
+                                </tr>
+                                <tr>
+                                    <th>다리</th>
+                                    <td>198</td>
+                                    <td>198</td>
+                                </tr>
+                                <tr>
+                                    <th>폭발 대미지</th>
+                                    <td>144</td>
+                                    <td>144</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table>
+                            <thead>
+                                <th colspan="3">A모드 1강</th>
+                            </thead>
+                            <tr>
+                                <th>방어구</th>
+                                <th style="text-align: center;">O</td>
+                                <th style="text-align: center;">X</td>
+                            </tr>
+                            <tr>
+                                <th>머리</th>
+                                <td>843</td>
+                                <td>1054</td>
+                            </tr>
+                            <tr>
+                                <th>가슴, 팔</th>
+                                <td>263</td>
+                                <td>263</td>
+                            </tr>
+                            <tr>
+                                <th>배</th>
+                                <td>329</td>
+                                <td>329</td>
+                            </tr>
+                            <tr>
+                                <th>다리</th>
+                                <td>198</td>
+                                <td>198</td>
+                            </tr>
+                            <tr>
+                                <th>폭발 대미지</th>
+                                <td>144</td>
+                                <td>144</td>
+                            </tr>
                         </table>
                         <table>
                             <thead>
@@ -380,12 +551,12 @@
                                 <tr>
                                     <th>가슴, 팔</th>
                                     <td>263</td>
-                                    <td>265</td>
+                                    <td>263</td>
                                 </tr>
                                 <tr>
                                     <th>배</th>
                                     <td>329</td>
-                                    <td>331</td>
+                                    <td>329</td>
                                 </tr>
                                 <tr>
                                     <th>다리</th>
@@ -395,7 +566,7 @@
                                 <tr>
                                     <th>폭발 대미지</th>
                                     <td>144</td>
-                                    <td>145</td>
+                                    <td>144</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -417,12 +588,12 @@
                                 <tr>
                                     <th>가슴, 팔</th>
                                     <td>263</td>
-                                    <td>265</td>
+                                    <td>263</td>
                                 </tr>
                                 <tr>
                                     <th>배</th>
                                     <td>329</td>
-                                    <td>331</td>
+                                    <td>329</td>
                                 </tr>
                                 <tr>
                                     <th>다리</th>
@@ -432,7 +603,7 @@
                                 <tr>
                                     <th>폭발 대미지</th>
                                     <td>144</td>
-                                    <td>145</td>
+                                    <td>144</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -506,7 +677,7 @@
                 <secmenu>추천 강화</secmenu><br>
                 댐3연3장2<br>댐1연3장4<br>연3장5<br><br>
                 <secmenu>우클릭 명0~4</secmenu>
-                <img src="/csoweapon-design/9076.png">
+                <img src="/9076.png">
             </div>
             <!-- End -->
         </div>
