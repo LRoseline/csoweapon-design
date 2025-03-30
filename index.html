@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSOWeapon / 카스온라인 무기정보</title>
-    <link href="/csoweapon-design/main.css" rel="stylesheet">
-    <link href="/csoweapon-design/weaponinfo.css" rel="stylesheet">
+    <link href="/main.css" rel="stylesheet">
+    <link href="/weaponinfo.css" rel="stylesheet">
 </head>
 <body>
     <div class="top-bar">
@@ -22,7 +22,7 @@
                 <option value="USP45" label="권총">USP45</option>
             </datalist>
             <!-- 무기 리스트 값들은 모두 weapon.js로 옮겼습니다. -->
-            <script src="/csoweapon-design/weapons.js"></script>
+            <script src="/weapons.js"></script>
             <script>
                 var str = '';
                 var input = document.querySelector("#id");
@@ -37,7 +37,20 @@
             </script>
         </form>
     </div>
-    <!-- 무기 정보창 -->
+    <!-- 무기 정보 없을 시 -->
+    <!-- 무기 검색하지 않았거나 빈 화면일 시 해당 코드를 보여주도록 설정하세요.
+    
+    <main>
+        <div class="basic-info">
+            <div class="empty window">
+                <h1>CSOWEAPON.COM</h1>
+                우측 상단의 검색창에 무기를 검색하시면 해당 무기의 정보를 확인하실 수 있습니다.
+            </div>
+        </div>
+    </main>
+
+    -->
+    <!-- 무기 정보창, 무기 검색했을 때 있다면 해당 코드를 보여주도록 설정하세요. -->
     <main>
         <div class="basic-info">
             <div class="weapon-name window">
@@ -45,7 +58,7 @@
             </div>
             <div class="weapon-info">
                 <div class="image window window-seperate">
-                    <img src="/csoweapon-design/DESTROYER Refine.png">
+                    <img src="/DESTROYER Refine.png">
                 </div>
                 <div class="buyable window window-seperate">
                     <secmenu>진영별 구매 가능 여부</secmenu>
@@ -109,501 +122,651 @@
                         <thead>
                             <tr class="top-sepe">
                                 <th class="info">정보</th>
-                                <th class="mode">A모드</th>
-                                <th class="mode">B모드</th>
+                                <th>값</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <th>대미지</th>
                                 <td>22</td>
-                                <td>23</td>
                             </tr>
                             <tr>
                                 <th>좀비 대미지</th>
                                 <td>37</td>
-                                <td>38</td>
                             </tr>
                             <tr>
                                 <th>시나리오 대미지</th>
-                                <td colspan="2">50</td>
+                                <td>50</td>
                             </tr>
                             <tr>
                                 <th>명중률</th>
-                                <td colspan="2">90%</td>
+                                <td>90%</td>
                             </tr>
                             <tr>
                                 <th>반동</th>
-                                <td colspan="2">82%</td>
+                                <td>82%</td>
                             </tr>
                             <tr>
                                 <th>무게</th>
-                                <td colspan="2">62%</td>
+                                <td>62%</td>
                             </tr>
                             <tr>
                                 <th>좀비 넉백</th>
-                                <td colspan="2">13%</td>
+                                <td>13%</td>
                             </tr>
                             <tr>
                                 <th>좀비 경직</th>
-                                <td colspan="2">50%</td>
+                                <td>50%</td>
                             </tr>
                             <tr>
                                 <th>가격</th>
-                                <td colspan="2">$3,100</td>
+                                <td>$3,100</td>
                             </tr>
                             <tr>
                                 <th>장탄수</th>
-                                <td colspan="2">30/90</td>
+                                <td>30/90</td>
                             </tr>
                             <tr>
                                 <th>좀비전 장탄수</th>
-                                <td colspan="2">30/270</td>
+                                <td>30/270</td>
                             </tr>
                             <tr>
                                 <th>장전속도</th>
-                                <td colspan="2">3.1s</td>
+                                <td>3.1s</td>
                             </tr>
                             <tr>
                                 <th>탄약</th>
-                                <td colspan="2">20mm 특수 고폭탄</td>
+                                <td>20mm 특수 고폭탄</td>
                             </tr>
                             <tr>
                                 <th>특수기능</th>
-                                <td colspan="2">스코프</td>
+                                <td>스코프</td>
                             </tr>
                             <tr>
                                 <th>최대 관통 수</th>
-                                <td colspan="2">10명</td>
+                                <td>10명</td>
                             </tr>
                             <tr>
-                                <th>관통 대미지<br>감소율(%)</th>
-                                <td colspan="2">100 - 75 - 56 - 42 - 31 - 23 - 17 - 13 - 9 - 7</td>
+                                <th>관통 대미지<br>감소율</th>
+                                <td>100 - 75 - 56 - 42 - 31 - 23 - 17 - 13 - 9 - 7</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <div class="detail window window-seperate">
-                    <!-- 대인↔좀비모드 변환기능 (숙주포함) -->
-                    <div class="secmenu">
-                        <secmenu>대미지</secmenu>
-                        <div style="text-align: right; padding-right: 4px; padding-bottom: 4px;">
-                            <input type="checkbox" id="isZombie">
-                            <label for="isZombie">좀비</label>
-                            <input type="checkbox" id="isHostZb" disabled>
-                            <label for="isHostZb">숙주</label>
-                        </div>
-                        <script>
-                            var zbcheck = document.querySelector("#isZombie");
-                            var hostzb = document.querySelector("#isHostZb")
-                            
-                            zbcheck.addEventListener("change", function (e) {
-                                var human = document.querySelector("#human-dmg");
-                                var zombie = document.querySelector("#zombie-dmg");
-                                var hostzb = document.querySelector("#isHostZb")
-                                var hostval = document.querySelector("#zombie-dmg-host");
-
-                                console.log("Mode Change");
-                                if (human.style.display != "none") {
-                                    human.style.display = "none";
-                                    zombie.style.display = "block";
-                                    hostzb.disabled = false;
-                                } else {
-                                    human.style.display = "block";
-                                    zombie.style.display = "none";
-                                    hostzb.checked = false;
-                                    hostzb.disabled = true;
-                                    hostval.style.display = "none";
-                                }
-                            });
-
-                            hostzb.addEventListener("change", function(e) {
-                                var zombie = document.querySelector("#zombie-dmg");
-                                var hostval = document.querySelector("#zombie-dmg-host");
-
-                                if (zombie.style.display != "none") {
-                                    zombie.style.display = "none";
-                                    hostval.style.display = "block";
-                                } else {
-                                    zombie.style.display = "block";
-                                    hostval.style.display = "none";
-                                }
-                            });
-                        </script>
-                    </div>
-                    <!-- 대미지 실제 수치(강화포함) - 인간 -->
-                    <div class="enchant" style="display: block;" id="human-dmg">
+                <!-- 연사, 무게, 장탄수, 추천강화 넣는 곳 -->
+                <div class="others window window-seperate">
+                    <h2>연사</h2>
+                    <div class="enchant">
                         <table>
                             <thead>
-                                <th colspan="3">A모드 0강</th>
+                                <tr>
+                                    <th colspan="2">A모드</th>
+                                </tr>
+                            <tbody>
+                                <tr>
+                                    <td colspan="2">100발 기준</td>
+                                </tr>
+                                <tr>
+                                    <td>0 강</td>
+                                    <td>8</td>
+                                </tr>
+                                <tr>
+                                    <td>1 강</td>
+                                    <td>7</td>
+                                </tr>
+                                <tr>
+                                    <td>2 강</td>
+                                    <td>7</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan="2">B모드</th>
+                                </tr>
+                            <tbody>
+                                <tr>
+                                    <td colspan="2">100발 기준</td>
+                                </tr>
+                                <tr>
+                                    <td>0 강</td>
+                                    <td>8</td>
+                                </tr>
+                                <tr>
+                                    <td>1 강</td>
+                                    <td>7</td>
+                                </tr>
+                                <tr>
+                                    <td>2 강</td>
+                                    <td>7</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="unit">단위 : s(초)</div>
+                    <h2>무게</h2>
+                    <div class="enchant">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan="2">달리기</th>
+                                </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th>방어구</th>
-                                    <th style="text-align: center;">O</td>
-                                    <th style="text-align: center;">X</td>
+                                    <td>0 강</td>
+                                    <td>200</td>
                                 </tr>
                                 <tr>
-                                    <th>머리</th>
-                                    <td>417</td>
-                                    <td>420</td>
+                                    <td>1 강</td>
+                                    <td>205</td>
                                 </tr>
                                 <tr>
-                                    <th>가슴, 팔</th>
-                                    <td>104</td>
-                                    <td>105</td>
+                                    <td>2 강</td>
+                                    <td>210</td>
                                 </tr>
                                 <tr>
-                                    <th>배</th>
-                                    <td>130</td>
-                                    <td>131</td>
+                                    <td>3 강</td>
+                                    <td>215</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan="2">B모드 달리기</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>0 강</td>
+                                    <td>200</td>
                                 </tr>
                                 <tr>
-                                    <th>다리</th>
-                                    <td>78</td>
-                                    <td>78</td>
+                                    <td>1 강</td>
+                                    <td>205</td>
                                 </tr>
                                 <tr>
-                                    <th>폭발 대미지</th>
+                                    <td>2 강</td>
+                                    <td>210</td>
+                                </tr>
+                                <tr>
+                                    <td>3 강</td>
+                                    <td>215</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="unit">단위 : Unit(유닛)</div>
+                </div>
+            </div>
+            <!-- 대미지 상세정보 -->
+            <div class="detail window">
+                <!-- 대인↔좀비모드 변환기능 -->
+                <div class="secmenu">
+                    <h2>대미지</h2>
+                    <div style="text-align: right; padding-right: 4px; padding-bottom: 4px;">
+                        <input type="radio" onclick="changeMode(this.id)" name="playmode" id="isZombie" checked>
+                        <label for="isZombie">좀비</label>
+                        <input type="radio" onclick="changeMode(this.id)" name="playmode" id="isHuman">
+                        <label for="isHuman">대인</label>
+                    </div>
+                    <script>
+                        function changeMode(target) {
+                            const humanDmg = document.querySelector("#human-dmg");
+                            const zombieDmg = document.querySelector("#zombie-dmg");
+
+                            switch (target) {
+                                case "isHuman":
+                                    humanDmg.style.display = "block";
+                                    zombieDmg.style.display = "none";
+                                    break;
+                                case "isZombie":
+                                    zombieDmg.style.display = "block";
+                                    humanDmg.style.display = "none";
+                                    break;
+                            }
+                        }
+                    </script>
+                </div>
+                <div class="description">
+                    <li>모든 대미지는 영거리(0M)를 기준으로 측정되었습니다.</li>
+                    <li>각 표마다 좌우 스크롤이 가능합니다.</li>
+                </div>
+                <!-- 대미지 실제 수치 - 인간 -->
+                <div class="enchant" style="display: none;" id="human-dmg">
+                    <div class="dmg-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan="5">0 강</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>방어구</td>
+                                    <td>O</td>
+                                    <td>X</td>
+                                </tr>
+                                <tr>
+                                    <td>머리</td>
+                                    <td>108</td>
+                                    <td>140</td>
+                                </tr>
+                                <tr>
+                                    <td>가슴 &amp; 팔</td>
+                                    <td>27</td>
+                                    <td>35</td>
+                                </tr>
+                                <tr>
+                                    <td>배</td>
+                                    <td>33</td>
+                                    <td>43</td>
+                                </tr>
+                                <tr>
+                                    <td>다리</td>
+                                    <td colspan="2">26</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan="5">1 강</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>방어구</td>
+                                    <td>O</td>
+                                    <td>X</td>
+                                </tr>
+                                <tr>
+                                    <td>머리</td>
+                                    <td>115</td>
+                                    <td>144</td>
+                                </tr>
+                                <tr>
+                                    <td>가슴 &amp; 팔</td>
+                                    <td>28</td>
+                                    <td>36</td>
+                                </tr>
+                                <tr>
+                                    <td>배</td>
+                                    <td>35</td>
+                                    <td>45</td>
+                                </tr>
+                                <tr>
+                                    <td>다리</td>
+                                    <td colspan="2">27</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan="5">2 강</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>방어구</td>
+                                    <td>O</td>
+                                    <td>X</td>
+                                </tr>
+                                <tr>
+                                    <td>머리</td>
+                                    <td>118</td>
+                                    <td>148</td>
+                                </tr>
+                                <tr>
+                                    <td>가슴 &amp; 팔</td>
                                     <td>29</td>
-                                    <td>30</td>
+                                    <td>37</td>
+                                </tr>
+                                <tr>
+                                    <td>배</td>
+                                    <td>36</td>
+                                    <td>46</td>
+                                </tr>
+                                <tr>
+                                    <td>다리</td>
+                                    <td colspan="2">27</td>
                                 </tr>
                             </tbody>
                         </table>
                         <table>
                             <thead>
-                                <th colspan="3">B모드 0강</th>
+                                <tr>
+                                    <th colspan="5">3 강</th>
+                                </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th>방어구</th>
-                                    <th style="text-align: center;">O</td>
-                                    <th style="text-align: center;">X</td>
+                                    <td>방어구</td>
+                                    <td>O</td>
+                                    <td>X</td>
                                 </tr>
                                 <tr>
-                                    <th>머리</th>
-                                    <td>417</td>
-                                    <td>420</td>
+                                    <td>머리</td>
+                                    <td>121</td>
+                                    <td>152</td>
                                 </tr>
                                 <tr>
-                                    <th>가슴, 팔</th>
-                                    <td>104</td>
-                                    <td>105</td>
+                                    <td>가슴 &amp; 팔</td>
+                                    <td>30</td>
+                                    <td>38</td>
                                 </tr>
                                 <tr>
-                                    <th>배</th>
-                                    <td>130</td>
-                                    <td>131</td>
+                                    <td>배</td>
+                                    <td>37</td>
+                                    <td>47</td>
                                 </tr>
                                 <tr>
-                                    <th>다리</th>
-                                    <td>78</td>
-                                    <td>78</td>
+                                    <td>다리</td>
+                                    <td colspan="2">28</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="dmg-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan="5">0 강</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>방어구</td>
+                                    <td>O</td>
+                                    <td>X</td>
                                 </tr>
                                 <tr>
-                                    <th>폭발 대미지</th>
+                                    <td>머리</td>
+                                    <td>108</td>
+                                    <td>140</td>
+                                </tr>
+                                <tr>
+                                    <td>가슴 &amp; 팔</td>
+                                    <td>27</td>
+                                    <td>35</td>
+                                </tr>
+                                <tr>
+                                    <td>배</td>
+                                    <td>33</td>
+                                    <td>43</td>
+                                </tr>
+                                <tr>
+                                    <td>다리</td>
+                                    <td colspan="2">26</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan="5">1 강</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>방어구</td>
+                                    <td>O</td>
+                                    <td>X</td>
+                                </tr>
+                                <tr>
+                                    <td>머리</td>
+                                    <td>115</td>
+                                    <td>144</td>
+                                </tr>
+                                <tr>
+                                    <td>가슴 &amp; 팔</td>
+                                    <td>28</td>
+                                    <td>36</td>
+                                </tr>
+                                <tr>
+                                    <td>배</td>
+                                    <td>35</td>
+                                    <td>45</td>
+                                </tr>
+                                <tr>
+                                    <td>다리</td>
+                                    <td colspan="2">27</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan="5">2 강</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>방어구</td>
+                                    <td>O</td>
+                                    <td>X</td>
+                                </tr>
+                                <tr>
+                                    <td>머리</td>
+                                    <td>118</td>
+                                    <td>148</td>
+                                </tr>
+                                <tr>
+                                    <td>가슴 &amp; 팔</td>
                                     <td>29</td>
+                                    <td>37</td>
+                                </tr>
+                                <tr>
+                                    <td>배</td>
+                                    <td>36</td>
+                                    <td>46</td>
+                                </tr>
+                                <tr>
+                                    <td>다리</td>
+                                    <td colspan="2">27</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th colspan="5">3 강</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>방어구</td>
+                                    <td>O</td>
+                                    <td>X</td>
+                                </tr>
+                                <tr>
+                                    <td>머리</td>
+                                    <td>121</td>
+                                    <td>152</td>
+                                </tr>
+                                <tr>
+                                    <td>가슴 &amp; 팔</td>
                                     <td>30</td>
+                                    <td>38</td>
+                                </tr>
+                                <tr>
+                                    <td>배</td>
+                                    <td>37</td>
+                                    <td>47</td>
+                                </tr>
+                                <tr>
+                                    <td>다리</td>
+                                    <td colspan="2">28</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    <!-- 대미지 실제 수치(강화포함) - 좀비 -->
-                    <div class="enchant" style="display: none;" id="zombie-dmg">
+                </div>
+                <!-- 대미지 실제 수치 - 좀비 -->
+                <div class="enchant" style="display: block;" id="zombie-dmg">
+                    <div class="dmg-table">
                         <table>
                             <thead>
-                                <th colspan="3">A모드 0강</th>
+                                <tr>
+                                    <th colspan="5">0 강</th>
+                                </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th>방어구</th>
-                                    <th style="text-align: center;">O</td>
-                                    <th style="text-align: center;">X</td>
+                                    <td>방어구</td>
+                                    <td colspan="2">O</td>
+                                    <td colspan="2">X</td>
                                 </tr>
                                 <tr>
-                                    <th>머리</th>
-                                    <td>848</td>
-                                    <td>1060</td>
+                                    <td>일반좀비</td>
+                                    <td>숙주</td>
+                                    <td>감염체</td>
+                                    <td>숙주</td>
+                                    <td>감염체</td>
                                 </tr>
                                 <tr>
-                                    <th>가슴, 팔</th>
-                                    <td>265</td>
-                                    <td>265</td>
+                                    <td>머리</td>
+                                    <td>138</td>
+                                    <td>173</td>
+                                    <td>179</td>
+                                    <td>224</td>
                                 </tr>
                                 <tr>
-                                    <th>배</th>
-                                    <td>331</td>
-                                    <td>331</td>
+                                    <td>가슴 &amp; 팔</td>
+                                    <td colspan="2">43</td>
+                                    <td colspan="2">56</td>
                                 </tr>
                                 <tr>
-                                    <th>다리</th>
-                                    <td>198</td>
-                                    <td>198</td>
+                                    <td>배</td>
+                                    <td colspan="2">54</td>
+                                    <td colspan="2">70</td>
                                 </tr>
                                 <tr>
-                                    <th>폭발 대미지</th>
-                                    <td>145</td>
-                                    <td>145</td>
+                                    <td>다리</td>
+                                    <td colspan="4">42</td>
                                 </tr>
                             </tbody>
                         </table>
                         <table>
                             <thead>
-                                <th colspan="3">A모드 1강</th>
+                                <tr>
+                                    <th colspan="5">1 강</th>
+                                </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th>방어구</th>
-                                    <th style="text-align: center;">O</td>
-                                    <th style="text-align: center;">X</td>
+                                    <td>방어구</td>
+                                    <td colspan="2">O</td>
+                                    <td colspan="2">X</td>
                                 </tr>
                                 <tr>
-                                    <th>머리</th>
-                                    <td>848</td>
-                                    <td>1060</td>
+                                    <td>일반좀비</td>
+                                    <td>숙주</td>
+                                    <td>감염체</td>
+                                    <td>숙주</td>
+                                    <td>감염체</td>
                                 </tr>
                                 <tr>
-                                    <th>가슴, 팔</th>
-                                    <td>265</td>
-                                    <td>265</td>
+                                    <td>머리</td>
+                                    <td>156</td><td>195</td><td>195</td><td>244</td>
                                 </tr>
                                 <tr>
-                                    <th>배</th>
-                                    <td>331</td>
-                                    <td>331</td>
+                                    <td>가슴 &amp; 팔</td>
+                                    <td colspan="2">48</td><td colspan="2">61</td>
                                 </tr>
                                 <tr>
-                                    <th>다리</th>
-                                    <td>198</td>
-                                    <td>198</td>
+                                    <td>배</td>
+                                    <td colspan="2">60</td>
+                                    <td colspan="2">76</td>
                                 </tr>
                                 <tr>
-                                    <th>폭발 대미지</th>
-                                    <td>145</td>
-                                    <td>145</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table>
-                            <thead>
-                                <th colspan="3">B모드 0강</th>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th>방어구</th>
-                                    <th style="text-align: center;">O</td>
-                                    <th style="text-align: center;">X</td>
-                                </tr>
-                                <tr>
-                                    <th>머리</th>
-                                    <td>848</td>
-                                    <td>1060</td>
-                                </tr>
-                                <tr>
-                                    <th>가슴, 팔</th>
-                                    <td>265</td>
-                                    <td>265</td>
-                                </tr>
-                                <tr>
-                                    <th>배</th>
-                                    <td>331</td>
-                                    <td>331</td>
-                                </tr>
-                                <tr>
-                                    <th>다리</th>
-                                    <td>198</td>
-                                    <td>198</td>
-                                </tr>
-                                <tr>
-                                    <th>폭발 대미지</th>
-                                    <td>145</td>
-                                    <td>145</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table>
-                            <thead>
-                                <th colspan="3">B모드 1강</th>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th>방어구</th>
-                                    <th style="text-align: center;">O</td>
-                                    <th style="text-align: center;">X</td>
-                                </tr>
-                                <tr>
-                                    <th>머리</th>
-                                    <td>848</td>
-                                    <td>1060</td>
-                                </tr>
-                                <tr>
-                                    <th>가슴, 팔</th>
-                                    <td>265</td>
-                                    <td>265</td>
-                                </tr>
-                                <tr>
-                                    <th>배</th>
-                                    <td>331</td>
-                                    <td>331</td>
-                                </tr>
-                                <tr>
-                                    <th>다리</th>
-                                    <td>198</td>
-                                    <td>198</td>
-                                </tr>
-                                <tr>
-                                    <th>폭발 대미지</th>
-                                    <td>145</td>
-                                    <td>145</td>
+                                    <td>다리</td>
+                                    <td colspan="4">45</td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
-                    <!-- 대미지 실제 수치(강화포함) - 숙주좀비 -->
-                    <div class="enchant" style="display: none;" id="zombie-dmg-host">
+                    <div class="dmg-table">
                         <table>
                             <thead>
-                                <th colspan="3">A모드 0강</th>
+                                <tr>
+                                    <th colspan="5">0 강</th>
+                                </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th>방어구</th>
-                                    <th style="text-align: center;">O</td>
-                                    <th style="text-align: center;">X</td>
+                                    <td>방어구</td>
+                                    <td colspan="2">O</td>
+                                    <td colspan="2">X</td>
                                 </tr>
                                 <tr>
-                                    <th>머리</th>
-                                    <td>843</td>
-                                    <td>1054</td>
+                                    <td>일반좀비</td>
+                                    <td>숙주</td>
+                                    <td>감염체</td>
+                                    <td>숙주</td>
+                                    <td>감염체</td>
                                 </tr>
                                 <tr>
-                                    <th>가슴, 팔</th>
-                                    <td>263</td>
-                                    <td>263</td>
+                                    <td>머리</td>
+                                    <td>138</td>
+                                    <td>173</td>
+                                    <td>179</td>
+                                    <td>224</td>
                                 </tr>
                                 <tr>
-                                    <th>배</th>
-                                    <td>329</td>
-                                    <td>329</td>
+                                    <td>가슴 &amp; 팔</td>
+                                    <td colspan="2">43</td>
+                                    <td colspan="2">56</td>
                                 </tr>
                                 <tr>
-                                    <th>다리</th>
-                                    <td>198</td>
-                                    <td>198</td>
+                                    <td>배</td>
+                                    <td colspan="2">54</td>
+                                    <td colspan="2">70</td>
                                 </tr>
                                 <tr>
-                                    <th>폭발 대미지</th>
-                                    <td>144</td>
-                                    <td>144</td>
+                                    <td>다리</td>
+                                    <td colspan="4">42</td>
                                 </tr>
                             </tbody>
                         </table>
                         <table>
                             <thead>
-                                <th colspan="3">A모드 1강</th>
-                            </thead>
-                            <tr>
-                                <th>방어구</th>
-                                <th style="text-align: center;">O</td>
-                                <th style="text-align: center;">X</td>
-                            </tr>
-                            <tr>
-                                <th>머리</th>
-                                <td>843</td>
-                                <td>1054</td>
-                            </tr>
-                            <tr>
-                                <th>가슴, 팔</th>
-                                <td>263</td>
-                                <td>263</td>
-                            </tr>
-                            <tr>
-                                <th>배</th>
-                                <td>329</td>
-                                <td>329</td>
-                            </tr>
-                            <tr>
-                                <th>다리</th>
-                                <td>198</td>
-                                <td>198</td>
-                            </tr>
-                            <tr>
-                                <th>폭발 대미지</th>
-                                <td>144</td>
-                                <td>144</td>
-                            </tr>
-                        </table>
-                        <table>
-                            <thead>
-                                <th colspan="3">B모드 0강</th>
+                                <tr>
+                                    <th colspan="5">1 강</th>
+                                </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th>방어구</th>
-                                    <th style="text-align: center;">O</td>
-                                    <th style="text-align: center;">X</td>
+                                    <td>방어구</td>
+                                    <td colspan="2">O</td>
+                                    <td colspan="2">X</td>
                                 </tr>
                                 <tr>
-                                    <th>머리</th>
-                                    <td>843</td>
-                                    <td>1054</td>
+                                    <td>일반좀비</td>
+                                    <td>숙주</td>
+                                    <td>감염체</td>
+                                    <td>숙주</td>
+                                    <td>감염체</td>
                                 </tr>
                                 <tr>
-                                    <th>가슴, 팔</th>
-                                    <td>263</td>
-                                    <td>263</td>
+                                    <td>머리</td>
+                                    <td>156</td><td>195</td><td>195</td><td>244</td>
                                 </tr>
                                 <tr>
-                                    <th>배</th>
-                                    <td>329</td>
-                                    <td>329</td>
+                                    <td>가슴 &amp; 팔</td>
+                                    <td colspan="2">48</td><td colspan="2">61</td>
                                 </tr>
                                 <tr>
-                                    <th>다리</th>
-                                    <td>198</td>
-                                    <td>198</td>
+                                    <td>배</td>
+                                    <td colspan="2">60</td>
+                                    <td colspan="2">76</td>
                                 </tr>
                                 <tr>
-                                    <th>폭발 대미지</th>
-                                    <td>144</td>
-                                    <td>144</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table>
-                            <thead>
-                                <th colspan="3">B모드 1강</th>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th>방어구</th>
-                                    <th style="text-align: center;">O</td>
-                                    <th style="text-align: center;">X</td>
-                                </tr>
-                                <tr>
-                                    <th>머리</th>
-                                    <td>843</td>
-                                    <td>1054</td>
-                                </tr>
-                                <tr>
-                                    <th>가슴, 팔</th>
-                                    <td>263</td>
-                                    <td>263</td>
-                                </tr>
-                                <tr>
-                                    <th>배</th>
-                                    <td>329</td>
-                                    <td>329</td>
-                                </tr>
-                                <tr>
-                                    <th>다리</th>
-                                    <td>198</td>
-                                    <td>198</td>
-                                </tr>
-                                <tr>
-                                    <th>폭발 대미지</th>
-                                    <td>144</td>
-                                    <td>144</td>
+                                    <td>다리</td>
+                                    <td colspan="4">45</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -612,72 +775,36 @@
             </div>
             <!-- 기타 강화 및 패치사항 등 이것저것 작성하는 곳 -->
             <div class="memo window">
-                <table>
-                    <thead>
-                        <tr>
-                            <th colspan="2">연사</th>
-                        </tr>
-                        <tr>
-                            <th colspan="2">10발 기준</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th class="enchant-count">0강</th>
-                            <td>7.7s</td>
-                        </tr>
-                        <tr>
-                            <th class="enchant-count">1강</th>
-                            <td>7.5s</td>
-                        </tr>
-                        <tr>
-                            <th class="enchant-count">2강</th>
-                            <td>7.2s</td>
-                        </tr>
-                        <tr>
-                            <th class="enchant-count">3강</th>
-                            <td>6.9s</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table>
-                    <thead>
-                        <tr>
-                            <th colspan="3">무게</th>
-                        </tr>
-                        <tr>
-                            <th class="enchant-count">강화</th>
-                            <th>달리기</th>
-                            <th>B모드 달리기</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th class="enchant-count">0강</th>
-                            <td>200</td>
-                            <td>150</td>
-                        </tr>
-                        <tr>
-                            <th class="enchant-count">1강</th>
-                            <td>205</td>
-                            <td>155</td>
-                        </tr>
-                        <tr>
-                            <th class="enchant-count">2강</th>
-                            <td>210</td>
-                            <td>160</td>
-                        </tr>
-                        <tr>
-                            <th class="enchant-count">3강</th>
-                            <td>215</td>
-                            <td>165</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <secmenu>추천 강화</secmenu><br>
-                댐3연3장2<br>댐1연3장4<br>연3장5<br><br>
-                <secmenu>우클릭 명0~4</secmenu>
-                <img src="/csoweapon-design/9076.png">
+                <h2>우클릭 명0~4</h2>
+                <img src="/9076.png">
+
+                <p>
+                    <h3>추천 강화</h3>
+                    댐3연3장2<br>
+                    댐1연3장4<br>
+                    연3장5
+                </p>
+                <p>
+                    <h3>장탄 강화</h3>
+                    1강~5강 각 +1발<br>
+                    5강시 10발
+                </p>
+                <p>
+                    <h3>연사별 장전속도 0,1,2,3강</h3>
+                    3.4초 / 3.2초 / 3.0초 / 2.9초
+                </p>
+                <p>
+                    <h3>좀비모드 대미지별 폭발 범위 (반지름)</h3>
+                    0강 2.9M<br>
+                    1강 3.3M<br>
+                    2강 3.6M<br>
+                    3강 3.9M<br>
+                    대인전 3강 범위 1.5M이하
+                </p>
+                <p>
+                    대인전 대미지 2강하고 1강 버그있음(1.2일 수정) + 폭발딜 본인이 맞음<br>
+                    원본 디트, AS50처럼 탄흔버그 존재
+                </p>
             </div>
             <!-- End -->
         </div>

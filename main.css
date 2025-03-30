@@ -4,15 +4,13 @@
     font-weight: normal;
     font-style: normal;
 }
+h1,h2,h3,h4,h5,h6 {
+    margin-block-start: 0;
+    margin-block-end: 0.2em;
+}
 
 body {
     margin: 0;
-}
-
-secmenu {
-    font-size: 16pt;
-    font-weight: 700;
-    text-align: center;
 }
 
 a, a:visited {
@@ -24,8 +22,7 @@ a, a:visited {
     font-family: NEXON Lv1 Gothic OTF;
     transition: 0.25s;
     margin-left: 0.25cm;
-    font-size: 28pt;
-    padding: 2pt;
+    font-size: 24pt;
 }
 .top-bar a:hover {
     color: #FFF;
@@ -40,6 +37,7 @@ a, a:visited {
     justify-content: space-between;
     font-weight: 700;
     font-size: 1.5em;
+    padding: 0.2em 0;
     background-color: lightslategray;
     color: #FFF;
     display: flex;
@@ -50,6 +48,7 @@ a, a:visited {
     vertical-align: middle;
     display: flex;
     margin-right: 0.1cm;
+    margin-block-end: 0;
 }
 
 #id {
